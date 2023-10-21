@@ -6,6 +6,7 @@ import { useNavigate } from "react-router";
 import { getUserDetails, updateUser } from "../redux/actions/usersAction";
 import Loader from "../components/Loader";
 import {setAlert} from "../redux/actions/alertAction";
+import { URL } from "../redux/types";
 
 const EditProfile = () => {
   const [uploading, setUploading] = useState(false);
@@ -75,7 +76,7 @@ const EditProfile = () => {
           "Content-Type": "multipart/form-data",
         },
       };
-      const res = await axios.post("/api/upload", fd, config);
+      const res = await axios.post(`${URL}/api/upload`, fd, config);
       setFormData({ ...formData, profileImage: res.data });
       setUploading(false);
     } catch (e) {

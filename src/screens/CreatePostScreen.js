@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import Loader from "../components/Loader";
 import { createPost } from "../redux/actions/postActions";
+import { URL } from "../redux/types";
 
 const CreatePostScreen = () => {
   const [uploading, setUploading] = useState(false);
@@ -37,7 +38,7 @@ const CreatePostScreen = () => {
           "Content-Type": "multipart/form-data",
         },
       };
-      const res = await axios.post("/api/upload", fd, config);
+      const res = await axios.post(`${URL}/api/upload`, fd, config);
       setFormData({ ...formData, image: res.data });
       setUploading(false);
     } catch (e) {
